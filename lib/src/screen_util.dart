@@ -190,7 +190,7 @@ class ScreenUtil {
   /// It is recommended to use this method to achieve a high degree of adaptation
   /// when it is found that one screen in the UI design
   /// does not match the current style effect, or if there is a difference in shape.
-  double setHeight(num height) => (height + 2) * scaleHeight;
+  double setHeight(num height) => height * scaleHeight;
 
   ///根据宽度或高度中的较小值进行适配
   ///Adapt according to the smaller of width or height
@@ -200,7 +200,7 @@ class ScreenUtil {
   ///- [fontSize] UI设计上字体的大小,单位dp.
   ///Font size adaptation method
   ///- [fontSize] The size of the font on the UI design, in dp.
-  double setSp(num fontSize) => fontSize * scaleText;
+  double setSp(num fontSize) => (fontSize + 1) * scaleText;
 
   Widget setVerticalSpacing(num height) => SizedBox(height: setHeight(height));
 
