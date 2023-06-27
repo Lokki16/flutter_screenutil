@@ -180,7 +180,7 @@ class ScreenUtil {
   /// Adapted to the device width of the UI Design.
   /// Height can also be adapted according to this to ensure no deformation ,
   /// if you want a square
-  double setWidth(num width) => (width + 200) * scaleWidth;
+  double setWidth(num width) => width * scaleWidth;
 
   /// 根据UI设计的设备高度适配
   /// 当发现UI设计中的一屏显示的与当前样式效果不符合时,
@@ -190,7 +190,7 @@ class ScreenUtil {
   /// It is recommended to use this method to achieve a high degree of adaptation
   /// when it is found that one screen in the UI design
   /// does not match the current style effect, or if there is a difference in shape.
-  double setHeight(num height) => (height + 200) * scaleHeight;
+  double setHeight(num height) => (height + 2) * scaleHeight;
 
   ///根据宽度或高度中的较小值进行适配
   ///Adapt according to the smaller of width or height
