@@ -59,15 +59,21 @@ class ScreenUtil {
     Duration duration = const Duration(milliseconds: 10),
   ]) async {
     final binding = WidgetsFlutterBinding.ensureInitialized();
-    window ??= binding.window;
+    binding.deferFirstFrame();
 
-    if (window.viewConfiguration.geometry.isEmpty) {
-      return Future.delayed(duration, () async {
-        binding.deferFirstFrame();
-        await ensureScreenSize(window, duration);
-        return binding.allowFirstFrame();
-      });
-    }
+    await Future.doWhile(() {
+      if (window == null) {
+        window = binding.platformDispatcher.implicitView;
+      }
+
+      if (window == null || window!.physicalSize.isEmpty) {
+        return Future.delayed(duration, () => true);
+      }
+
+      return false;
+    });
+
+    binding.allowFirstFrame();
   }
 
   Set<Element>? _elementsToRebuild;
